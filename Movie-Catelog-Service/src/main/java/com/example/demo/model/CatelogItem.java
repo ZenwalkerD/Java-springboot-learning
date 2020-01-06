@@ -40,4 +40,10 @@ public class CatelogItem {
 		this.description = desc;
 		this.rating = rating;
 	}
+
+	public CatelogItem() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }
