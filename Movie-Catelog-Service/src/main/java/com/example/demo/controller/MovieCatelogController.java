@@ -1,4 +1,4 @@
-package com.example.demo.resources;
+package com.example.demo.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +27,9 @@ public class MovieCatelogController {
 		List<String> list = Arrays.asList("1");
 
 		return list.stream().map(item -> {
-			MovieReview reviews = restTemplate.getForObject("http://localhost:9000/reviews/" + item, MovieReview.class);
-			MovieRatingModel[] ratings = restTemplate.getForObject("http://localhost:9001/rating/" + item,
+			MovieReview reviews = restTemplate.getForObject("http://movie-review-service/reviews/" + item,
+					MovieReview.class);
+			MovieRatingModel[] ratings = restTemplate.getForObject("http://movie-rating-service/rating/" + item,
 					MovieRatingModel[].class);
 			return new CatelogItem("Titanic", reviews.getReview(), ratings[0].getRating());
 		}).collect(Collectors.toList());
